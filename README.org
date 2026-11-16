@@ -1,0 +1,68 @@
+* Advent of Code 2026 solutions in Common Lisp
+Solving Advent of Code puzzles in Common Lisp as part of learning the language by doing puzzles rather than tutorials.
+
+All solutions in a  =package-inferred-system= called =aoc-26=.
+
+Utilities that aren't specific to this Advent of Code, such as grids, 2D points and queues, are in a separate library, [[https://github.com/Abizern/challenge-utilities][challenge-utilities]], which is shared with other programming challenges.
+
+** Layout
+- =aoc-26.asd= defines the system. Each file defines one package named after its path, and its =defpackage= clauses are its dependencies.
+- Utilities specific to Advent of Code live in =utils/=, one package per group: =utils/input.lisp= (package =aoc-26/utils/input=) reads puzzle input, and =utils/solutions-helper.lisp= (package =aoc-26/utils/solutions-helper=) prints both parts' answers. =utils.lisp= (package =aoc-26/utils=) re-exports them together with all of =challenge-utilities=, so a day only needs =(:use :aoc-26/utils)=.
+- Each day's solution is in =dayNN.lisp= (package =aoc-26/dayNN=). The answers are recorded as comments on =part1= and =part2=, e.g. =;; => 862=.
+- Puzzle inputs live in =inputs/dayNN.txt=. These are not part of the repository.
+- Days don't have tests: getting the right answer is the check.
+
+** Setup
+Symlink the repository into Quicklisp's local projects:
+
+ : ln -s "$PWD" ~/.quicklisp/local-projects/
+
+Clone =challenge-utilities= alongside it:
+
+ : git clone https://github.com/Abizern/challenge-utilities.git ~/.quicklisp/local-projects/challenge-utilities
+
+Any directory in =ql:*local-project-directories*= works for either repository.
+
+If Quicklisp doesn't find either of them, run =(ql:register-local-projects)= once.
+
+** Dependencies
+- [[https://github.com/Abizern/challenge-utilities][challenge-utilities]], cloned from GitHub (see Setup)
+
+These libraries come from Quicklisp:
+- alexandria
+- cl-ppcre
+- ironclad (MD5 hashes)
+
+=(ql:quickload "aoc-26")= downloads any of the first three that are missing, along with the libraries =challenge-utilities= needs.
+
+** Usage
+Scaffold a new day's solution file:
+
+ : ./new-day.sh DAY
+
+This creates =dayNN.lisp= from the standard template and an empty =inputs/dayNN.txt= (if one doesn't already exist).
+
+Save the puzzle input as =inputs/dayNN.txt=, either by downloading it from the input page or with the browser's /Save Page As…/. Copying and pasting it can lose spaces, which matters for inputs that are pictures, such as 2017 day 19.
+
+Inside a day's file, =(read-input)= reads that day's input as a string, and =(read-input :format :lines)= reads it as a list of lines. The day comes from the package name, so there's nothing to pass in. It is possible to run it with sample input.
+
+In the REPL run =(ql:quickload "aoc-26")=, open the day's file, compile it with =C-c C-k= and hack away until you get the right solutions.
+
+** Progress
+Solutions in this repository
+
+|    | 2026 |
+|----+------|
+|  1 |      |
+|  2 |      |
+|  3 |      |
+|  4 |      |
+|  5 |      |
+|  6 |      |
+|  7 |      |
+|  8 |      |
+|  9 |      |
+| 10 |      |
+| 11 |      |
+| 12 |      |
+
